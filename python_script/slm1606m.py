@@ -40,6 +40,8 @@ GPIO.output(RST, 1)
 GPIO.output(RST, 0)
 
 
+print("SLM1606M Driver Loaded")
+
 def display_dot_1616(dot,duty,redOn,greenOn):
 	for i in range(16):
 		for j in range(16):
