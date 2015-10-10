@@ -41,20 +41,19 @@ GPIO.output(RST, 0)
 
 
 def display_dot_1212(dot,duty,redOn,greenOn):
+        GPIO.output(GRN,0)
+	GPIO.output(RED,0)
 	for i in range(2):
                 for j in range(16):
-                        GPIO.output(GRN,0)
-			GPIO.output(RED,0)
                         GPIO.output(CLK,1)
                         GPIO.output(CLK,0)
-                for j in range(duty):
-                        GPIO.output(BRT,1)
+                GPIO.output(BRT,1)
                 GPIO.output(BRT,0)
 
 	for i in range(12):
+       		GPIO.output(GRN,0)
+                GPIO.output(RED,0)
 		for j in range(2):
-               		GPIO.output(GRN,0)
-                        GPIO.output(RED,0)
                 	GPIO.output(CLK,1)
                 	GPIO.output(CLK,0)
 
@@ -64,9 +63,9 @@ def display_dot_1212(dot,duty,redOn,greenOn):
 			GPIO.output(CLK,1)
 			GPIO.output(CLK,0)
 
+		GPIO.output(GRN,0)
+                GPIO.output(RED,0)
 		for j in range(2):
-			GPIO.output(GRN,0)
-                        GPIO.output(RED,0)
                         GPIO.output(CLK,1)
                         GPIO.output(CLK,0)
 			
@@ -75,17 +74,18 @@ def display_dot_1212(dot,duty,redOn,greenOn):
 			GPIO.output(BRT,1)
 		GPIO.output(BRT,0)
 
-        for i in range(2):
+        GPIO.output(GRN,0)
+	GPIO.output(RED,0)
+	for i in range(2):
                 for j in range(16):
-                        GPIO.output(GRN,0)
-                        GPIO.output(RED,0)
                         GPIO.output(CLK,1)
                         GPIO.output(CLK,0)
-                for j in range(duty):
-                        GPIO.output(BRT,1)
+                GPIO.output(BRT,1)
                 GPIO.output(BRT,0)
 
 
 
-while(True):
-	display_dot_1212(dot_umbr,200,1,1)
+# Main program
+if __name__ == '__main__':
+	while(True):
+		display_dot_1212(dot_umbr,200,1,1)
