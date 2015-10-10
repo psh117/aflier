@@ -40,6 +40,19 @@ GPIO.output(RST, 1)
 GPIO.output(RST, 0)
 
 
+def display_dot_1616(dot,duty,redOn,greenOn):
+	for i in range(16):
+		for j in range(16):
+			GPIO.output(GRN, dot[i*16 + j] & greenOn)
+                        GPIO.output(RED, dot[i*16 + j] & redOn)
+			GPIO.output(CLK,1)
+			GPIO.output(CLK,0)
+			
+		for j in range(duty):
+			GPIO.output(BRT,1)
+		GPIO.output(BRT,0)
+
+
 def display_dot_1212(dot,duty,redOn,greenOn):
         GPIO.output(GRN,0)
 	GPIO.output(RED,0)
@@ -58,8 +71,8 @@ def display_dot_1212(dot,duty,redOn,greenOn):
                 	GPIO.output(CLK,0)
 
 		for j in range(12):
-			GPIO.output(GRN, dot[i*12 + j])
-                        GPIO.output(RED, dot[i*12 + j])
+			GPIO.output(GRN, dot[i*12 + j] & greenOn)
+                        GPIO.output(RED, dot[i*12 + j] & redOn)
 			GPIO.output(CLK,1)
 			GPIO.output(CLK,0)
 
