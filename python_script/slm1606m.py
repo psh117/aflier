@@ -101,4 +101,4 @@ def display_dot_1212(dot,duty,redOn,greenOn):
 # Main program
 if __name__ == '__main__':
 	while(True):
-		display_dot_1212(dot_umbr,200,1,1)
+		display_dot_1212(dot_umbr,1,1,1)
