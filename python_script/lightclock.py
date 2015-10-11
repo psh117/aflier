@@ -2,38 +2,12 @@ from slm1606m import *
 from neopixel_user import *
 from neopixel import *
 
+import dot_data
 import threading, time
 
-
-dot_umb = [
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,1,1,1,1,0,0,0,0,
-0,0,1,0,0,0,0,1,1,0,0,0,
-0,0,0,1,1,1,1,1,1,1,0,0,
-0,0,0,0,1,1,1,1,1,1,1,0,
-0,0,0,0,0,1,1,1,1,1,1,0,
-0,0,0,0,0,1,1,1,1,1,1,0,
-0,1,0,0,1,1,0,1,1,1,1,0,
-0,1,1,1,1,0,0,0,1,1,1,0,
-0,0,1,1,0,0,0,0,0,1,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0
-]
-
-dot_1 = [
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1,1,0,0,0,0,0,0,
-0,0,0,0,0,0,1,0,0,0,0,0,
-0,0,0,0,0,0,1,0,0,0,0,0,
-0,1,1,1,1,1,0,0,1,0,0,0,
-0,1,0,0,0,0,0,1,0,0,0,0,
-0,0,1,1,0,0,0,1,0,0,0,0,
-0,0,0,0,0,0,0,0,1,1,0,1,
-0,0,0,0,0,0,0,0,1,0,0,0,
-0,0,0,0,0,0,0,1,0,0,0,0,
-0,0,0,0,0,0,1,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0
-]
+color_blue = Color(0,160,182)
+color_red = Color(241,15,10)
+#color_yellow = Color
 
 class DotThread(threading.Thread):
 	def __init__(self, dot):
@@ -42,7 +16,7 @@ class DotThread(threading.Thread):
 		self.dot = dot
 	def run(self):
 		while(self.__continue):
-			display_dot_1212(self.dot,5,1,1)
+			display_dot_1212(self.dot,5,0,1)
 			pass
 	def stop(self):
 		self.__continue = False
@@ -62,14 +36,19 @@ class LEDThread(threading.Thread):
 
 	def run(self):
 		while(self.__continue):
-			self.strip.setPixelColor(0,color(0,160,182))
-			self.strip.setPixelColor(1,color(0,160,182))
-			self.strip.setPixelColor(11,color(0,160,182))
+			#self.strip.setPixelColor(0,Color(0,160,182))
+			#self.strip.setPixelColor(1,Color(0,160,182))
+                        self.strip.setPixelColor(7,color_red)
+                        self.strip.setPixelColor(5,color_red)
+                        self.strip.setPixelColor(6,color_red)
+
+			#self.strip.setPixelColor(11,Color(0,160,182))
 			self.strip.show()
+			time.sleep(1)
 	
 	
 
-dot_th = DotThread(dot_1)
+dot_th = DotThread(dot_data.dot_38)
 dot_th.start()
 led_th = LEDThread()
 led_th.start()
