@@ -54,16 +54,18 @@ class LEDThread(threading.Thread):
 
 	def run(self):
 		while(self.__continue):
+			#self.strip.setPixelColor(0,Color(0,160,182))
+			#self.strip.setPixelColor(1,Color(0,160,182))
                         self.strip.setPixelColor(0,color_bl_1)
-                        self.strip.setPixelColor(1,color_bl_1)
-                        self.strip.setPixelColor(2,color_bl_1)
-                        self.strip.setPixelColor(3,color_bl_1)
-                        self.strip.setPixelColor(4,color_bl_1)
+#                        self.strip.setPixelColor(1,color_bl_1)
+ #                       self.strip.setPixelColor(2,color_bl_1)
+  #                      self.strip.setPixelColor(3,color_bl_1)
+   #                     self.strip.setPixelColor(4,color_bl_1)
                         self.strip.setPixelColor(5,color_bl_4)
-                        self.strip.setPixelColor(6,color_bl_1)
-                        self.strip.setPixelColor(7,color_bl_1)
+#                        self.strip.setPixelColor(6,color_bl_1)
+#                        self.strip.setPixelColor(7,color_bl_1)#
 			self.strip.setPixelColor(8,color_bl_2)
-                        self.strip.setPixelColor(9,color_bl_1)
+#                        self.strip.setPixelColor(9,color_bl_1)
                         self.strip.setPixelColor(10,color_bl_2)
                         self.strip.setPixelColor(11,color_bl_4)
 
