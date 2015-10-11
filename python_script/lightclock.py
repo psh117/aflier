@@ -62,7 +62,10 @@ class LEDThread(threading.Thread):
 
 	def run(self):
 		while(self.__continue):
-			rainbow(self.strip)
+			self.strip.setPixelColor(0,color(0,160,182))
+			self.strip.setPixelColor(1,color(0,160,182))
+			self.strip.setPixelColor(11,color(0,160,182))
+			self.strip.show()
 	
 	
 
