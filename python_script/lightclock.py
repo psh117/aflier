@@ -63,7 +63,7 @@ class LEDThread(threading.Thread):
 	def run(self):
 		if(self.mode == 'show'):
 			for i in range(12):
-				self.strip.setPixelColor(i,colors[i])
+				self.strip.setPixelColor(i,self.colors[i])
 			self.strip.show()
 		if(self.mode == 'circle'):
 			pass
