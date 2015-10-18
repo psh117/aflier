@@ -180,6 +180,7 @@ led_th.disp_up(0.4,3)
 time.sleep(6)
 led_th.disp_down(0.4,3)
 time.sleep(6)
+led_th.disp_update(0.03)
 try:
 	while(True):
 		time.sleep(0.1)
