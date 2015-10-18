@@ -13,7 +13,7 @@ color_blue = Color(0,160,182)
 color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
 
-dot = dot_data.dot_17
+dot = dot_data.dot_hum
 	
 	
 dot_th = DotThread(dot)
