@@ -22,7 +22,7 @@ class WTJsonThread(threading.Thread):
 
 	def run(self):
 		while(self.__continue):
-			befo_time = self.UpdateJsonData(befo_time)
+			self.befo_time = self.UpdateJsonData(self.befo_time)
 			for i in range (600):
 				time.sleep(1)
 				if (self.__continue == False):
