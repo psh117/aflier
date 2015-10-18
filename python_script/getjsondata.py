@@ -2,87 +2,101 @@ import json
 import urllib
 import time
 from datetime import datetime
+import threading
 
-rain = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-wind = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-dust = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-temp = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
-tempPast24 = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 
-now = datetime.now()
-befo_time = now.hour - 1
-
-def UpdateJsonData(befo_time):
-	now = datetime.now()
-	nowHour = now.hour #nowHour = variable[0]
-	nowDay = now.day
-	nowMonth = now.month
-
-	# json read
-	url = "http://54.92.73.84:8000/"
-	result = json.load(urllib.urlopen(url))
-	hourDif = 0
+class WTJsonThread(threading.Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		self.__continue = True
+		self.rain = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		self.wind = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		self.dust = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		self.temp = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
+		self.tempPast24 = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
+		self.now = datetime.now()
+		self.befo_time = now.hour - 1
 	
-	#array pop
-	if(nowHour < befo_time):
-		hourDif = (nowHour + 24 - befo_time)
-	elif (nowHour > befo_time):
-		hourDif = nowHour - befo_time
-	else :
-		print ("Same hour, Skip")
+	def stop(self):
+		self.__continue = False
+
+	def run(self):
+		while(self.__continue):
+			befo_time = self.UpdateJsonData(befo_time)
+			for i in range (600):
+				time.sleep(1)
+				if (self.__continue == False):
+					break
+	
+	def UpdateJsonData(befo_time):
+		now = datetime.now()
+		nowHour = now.hour #nowHour = variable[0]
+		nowDay = now.day
+		nowMonth = now.month
+	
+		# json read
+		url = "http://54.92.73.84:8000/"
+		result = json.load(urllib.urlopen(url))
+		hourDif = 0
+		
+		#array pop
+		if(nowHour < befo_time):
+			hourDif = (nowHour + 24 - befo_time)
+		elif (nowHour > befo_time):
+			hourDif = nowHour - befo_time
+		else :
+			print ("Same hour, Skip")
+			return nowHour
+		
+		if(hourDif < 11):
+			self.rain[0] = self.rain[hourDif]
+			self.rain[1] = self.rain[hourDif+1]
+			self.wind[0] = self.wind[hourDif]
+			self.wind[1] = self.wind[hourDif+1]
+			self.dust[0] = self.dust[hourDif]
+			self.dust[1] = self.dust[hourDif+1]
+			self.temp[0] = self.temp[hourDif]
+			self.temp[1] = self.temp[hourDif+1]
+			self.tempPast24[0] = self.tempPast24[hourDif]
+			self.tempPast24[1] = self.tempPast24[hourDif+1]
+		
+		init_time = nowHour
+		past_time = nowHour
+		for sz in result['data']:
+			t = sz['time']
+			index = t - init_time
+			last_index = past_time - init_time
+			#if index >= 12:
+			#	break
+			self.rain[index] = sz['self.rain']
+			self.wind[index] = sz['self.wind']
+			self.dust[index] = sz['self.dust']
+			self.temp[index] = sz['self.temp']
+			
+			if index>2 :
+				diff = self.temp[index] - self.temp[last_index]
+				self.temp[index-1] = self.temp[last_index] + (int)(diff * 0.33)
+				self.temp[index-2] = self.temp[last_index] + (int)(diff * 0.67)
+			if index>2 :
+				diff = self.rain[index] - self.rain[last_index]
+				self.rain[index-1] = self.rain[last_index] + (int)(diff * 0.33)
+				self.rain[index-2] = self.rain[last_index] + (int)(diff * 0.67)
+			if index>2 :
+				diff = self.dust[index] - self.dust[last_index]
+				self.dust[index-1] = self.dust[last_index] + (int)(diff * 0.33)
+				self.dust[index-2] = self.dust[last_index] + (int)(diff * 0.67)
+			if index>2 :
+				diff = self.wind[index] - self.wind[last_index]
+				self.wind[index-1] = self.wind[last_index] + (int)(diff * 0.33)
+				self.wind[index-2] = self.wind[last_index] + (int)(diff * 0.67)
+			
+			past_time = t
+			
+			
+		for i in range(12):
+			print(nowHour+i,self.rain[i], self.wind[i], self.dust[i], self.temp[i])
+		print("Now Hour =", nowHour, "Updated")
 		return nowHour
-	
-	if(hourDif < 11):
-		rain[0] = rain[hourDif]
-		rain[1] = rain[hourDif+1]
-		wind[0] = wind[hourDif]
-		wind[1] = wind[hourDif+1]
-		dust[0] = dust[hourDif]
-		dust[1] = dust[hourDif+1]
-		temp[0] = temp[hourDif]
-		temp[1] = temp[hourDif+1]
-		tempPast24[0] = tempPast24[hourDif]
-		tempPast24[1] = tempPast24[hourDif+1]
-	
-	init_time = nowHour
-	past_time = nowHour
-	for sz in result['data']:
-		t = sz['time']
-		index = t - init_time
-		last_index = past_time - init_time
-		#if index >= 12:
-		#	break
-		rain[index] = sz['rain']
-		wind[index] = sz['wind']
-		dust[index] = sz['dust']
-		temp[index] = sz['temp']
-		
-		if index>2 :
-			diff = temp[index] - temp[last_index]
-			temp[index-1] = temp[last_index] + (int)(diff * 0.33)
-			temp[index-2] = temp[last_index] + (int)(diff * 0.67)
-		if index>2 :
-			diff = rain[index] - rain[last_index]
-			rain[index-1] = rain[last_index] + (int)(diff * 0.33)
-			rain[index-2] = rain[last_index] + (int)(diff * 0.67)
-		if index>2 :
-			diff = dust[index] - dust[last_index]
-			dust[index-1] = dust[last_index] + (int)(diff * 0.33)
-			dust[index-2] = dust[last_index] + (int)(diff * 0.67)
-		if index>2 :
-			diff = wind[index] - wind[last_index]
-			wind[index-1] = wind[last_index] + (int)(diff * 0.33)
-			wind[index-2] = wind[last_index] + (int)(diff * 0.67)
-		
-		past_time = t
-		
-		
-	for i in range(12):
-		print(nowHour+i,rain[i], wind[i], dust[i], temp[i])
-	print("Now Hour =", nowHour, "Updated")
-	return nowHour
 
-while (1):
-	befo_time = UpdateJsonData(befo_time)
-	time.sleep(1800)
+
 	
