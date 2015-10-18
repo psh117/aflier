@@ -1,8 +1,11 @@
 from raspi_serial import *
 from wifi import Cell, Scheme
 
-def get_wifi_ssid():
-	ssids = [cell.ssid for cell in Cell.all('wlan0')]
+gCell = Cell()
+
+def get_wifi_ssid(cell):
+	cell = Cell.all('wlan0')
+	ssids = [cells.ssid for cells in cell]
 	return ssids
 
 while (1):
@@ -11,11 +14,19 @@ while (1):
 	if(strs == "REQ?CON"):
 		serial_send_line("RSP?CON")
 		print("respond")
-	if(strs == "GET?SSIDLIST"):
-		ssids = get_wifi_ssid()
+	elif(strs == "GET?SSIDLIST"):
+		ssids = get_wifi_ssid(gCell)
 		serial_send_line("RSP?SSID")
 		serial_send_line(str(len(ssids)))
 		for ssid in ssids:
 			serial_send_line(ssid)
 		
+	elif(strs == "SET?SSID"):
+		print("SET SSID")
+		ssid = int(serial_read_line())
+		pswd = serial_read_line()
+		scheme = Scheme.for_cell('wlan0','home',gCell[ssid],pswd)
+		scheme.save()
+		scheme.activate()
+		print("Complete")
     
