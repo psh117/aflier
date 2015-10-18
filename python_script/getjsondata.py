@@ -106,7 +106,7 @@ class WTJsonThread(threading.Thread):
 			
 			
 		for i in range(12):
-			self.alhour[i] = (nowHour+1)%24
+			self.alhour[i] = (nowHour+i)%24
 			print(self.alhour[i],self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast24[i])
 		print("Now Hour =", nowHour, "Updated")
 		return nowHour
