@@ -25,7 +25,7 @@ class PCComThread(threading.Thread):
 				serial_send_line("RSP?CON")
 				print("respond")
 			elif(strs == "GET?SSIDLIST"):
-				ssids = get_wifi_ssid(__cell)
+				ssids = get_wifi_ssid(self.__cell)
 				serial_send_line("RSP?SSID")
 				serial_send_line(str(len(ssids)))
 				for ssid in ssids:
@@ -35,7 +35,7 @@ class PCComThread(threading.Thread):
 				print("SET SSID")
 				ssid = int(serial_read_line())
 				pswd = serial_read_line()
-				scheme = Scheme.for_cell('wlan0','home',__cell[ssid],pswd)
+				scheme = Scheme.for_cell('wlan0','home',self.__cell[ssid],pswd)
 				try:
 					scheme.delete()
 				except:
