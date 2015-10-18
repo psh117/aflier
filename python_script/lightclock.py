@@ -132,6 +132,7 @@ class LEDThread(threading.Thread):
 					self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
 					self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
 					self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
+					self.strip.show()
 					time.sleep(self.dt)
 				self.mode = 'none'
 			time.sleep(0.1)
