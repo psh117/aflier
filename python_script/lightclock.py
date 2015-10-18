@@ -43,7 +43,7 @@ pygame.mixer.music.play()
 time.sleep(1)
 
 # PSD detect
-while (!GPIO.input(PSD)):
+while (GPIO.input(PSD) == 0):
 	led_th.disp_color(0.005)
 
 # Compare Past Temp (Colder then past)
