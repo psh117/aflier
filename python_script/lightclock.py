@@ -136,7 +136,7 @@ class LEDThread(threading.Thread):
 						self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
 						self.strip.show()
 						time.sleep(self.dt)
-				reset_pix_data()
+				self.reset_pix_data()
 				self.strip.show()
 				self.mode = 'none'
 			time.sleep(0.1)
@@ -182,7 +182,7 @@ pc_th.start()
 time.sleep(1)
 led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
 
-led_th.disp_update(0.05,3)
+led_th.disp_update(0.03,3)
 time.sleep(6)
 led_th.fade_in(0.02)
 time.sleep(6)
