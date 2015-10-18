@@ -96,13 +96,11 @@ class LEDThread(threading.Thread):
 			time.sleep(0.1)
 		
 	def fade_out(self, time):
+		self.dt = time
 		self.mode = 'fade_out'
-		self.dt = time
-		self.start()
 	def fade_in(self, time):
-		self.mode = 'fade_in'
 		self.dt = time
-		self.start()
+		self.mode = 'fade_in'
 		
 	
 dot_th = DotThread(dot)
