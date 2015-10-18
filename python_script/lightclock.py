@@ -40,9 +40,11 @@ class DotThread(threading.Thread):
 		threading.Thread.__init__(self)
 		self.__continue = True
 		self.dot = dot
+		self.green = 1
+		self.red = 1
 	def run(self):
 		while(self.__continue):
-			display_dot_1212(self.dot,5,1,1)
+			display_dot_1212(self.dot,5,self.green,self.red)
 			pass
 	def stop(self):
 		self.__continue = False
@@ -75,6 +77,7 @@ time.sleep(6)
 try:
 	while(True):
 		# dust
+		dot_th.red = 1
 		dot_th.changeDot(dot_data.dot_sun)
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
@@ -83,6 +86,7 @@ try:
 		led_th.fade_out(0.02)
 		time.sleep(6)
 		# dust
+		dot_th.red = 0
 		dot_th.changeDot(dot_data.dot_umbrella)
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.wind[i]]
