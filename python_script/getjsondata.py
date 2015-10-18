@@ -79,8 +79,8 @@ class WTJsonThread(threading.Thread):
 				self.temp[index-2] = self.temp[last_index] + (int)(diff * 0.67)
 			if index>2 :
 				diff = self.rain[index] - self.rain[last_index]
-				self.rain[index-1] = self.rain[last_index] + (int)(diff * 0.33)
-				self.rain[index-2] = self.rain[last_index] + (int)(diff * 0.67)
+				self.rain[index-1] = self.rain[last_index] + (diff * 0.33)
+				self.rain[index-2] = self.rain[last_index] + (diff * 0.67)
 			if index>2 :
 				diff = self.dust[index] - self.dust[last_index]
 				self.dust[index-1] = self.dust[last_index] + (int)(diff * 0.33)
@@ -94,7 +94,7 @@ class WTJsonThread(threading.Thread):
 			
 			
 		for i in range(12):
-			print((nowHour+i)%24,self.rain[i], self.wind[i], self.dust[i], self.temp[i])
+			print((nowHour+i)%24,self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast[i])
 		print("Now Hour =", nowHour, "Updated")
 		return nowHour
 
