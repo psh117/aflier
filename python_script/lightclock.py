@@ -56,7 +56,7 @@ class LEDThread(threading.Thread):
 		self.strip.begin()
 		self.colors = [Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0)]
 		self.mode = 'show'
-		self.dt
+		self.dt = 0
 	
 	def stop(self):
 		self.__continue = False
