@@ -13,7 +13,7 @@ class WTJsonThread(threading.Thread):
 		self.wind = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		self.dust = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		self.temp = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
-		self.tempPast = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
+		self.tempPast24 = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 		self.now = datetime.now()
 		self.befo_time = self.now.hour - 1
 	
@@ -72,7 +72,7 @@ class WTJsonThread(threading.Thread):
 			self.wind[index] = sz['wind']
 			self.dust[index] = sz['dust']
 			self.temp[index] = sz['temp']
-			self.tempPast[index] = sz['tempPast24']
+			self.tempPast24[index] = sz['tempPast24']
 			
 			if index>2 :
 				diff = self.temp[index] - self.temp[last_index]
@@ -91,15 +91,15 @@ class WTJsonThread(threading.Thread):
 				self.wind[index-1] = self.wind[last_index] + (int)(diff * 0.33)
 				self.wind[index-2] = self.wind[last_index] + (int)(diff * 0.67)
 			if index>2 :
-				diff = self.tempPast[index] - self.tempPast[last_index]
-				self.tempPast[index-1] = self.tempPast[last_index] + (int)(diff * 0.33)
-				self.tempPast[index-2] = self.tempPast[last_index] + (int)(diff * 0.67)
+				diff = self.tempPast24[index] - self.tempPast24[last_index]
+				self.tempPast24[index-1] = self.tempPast24[last_index] + (int)(diff * 0.33)
+				self.tempPast24[index-2] = self.tempPast24[last_index] + (int)(diff * 0.67)
 			
 			past_time = t
 			
 			
 		for i in range(12):
-			print((nowHour+i)%24,self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast[i])
+			print((nowHour+i)%24,self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast24[i])
 		print("Now Hour =", nowHour, "Updated")
 		return nowHour
 
