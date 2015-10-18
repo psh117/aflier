@@ -111,7 +111,7 @@ pc_th = PCComThread()
 pc_th.start()
 #dot_th.join()
 time.sleep(10)
-led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[5],color_rd[4],color_rd[3],color_rd[2],color_rd[0]]
+led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
 led_th.fade_in(0.03)
 
 try:
