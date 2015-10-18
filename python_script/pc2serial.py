@@ -1,7 +1,7 @@
 from raspi_serial import *
 from wifi import Cell, Scheme
 
-gCell = Cell()
+gCell = Cell.all('wlan0')
 
 def get_wifi_ssid(cell):
 	cell = Cell.all('wlan0')
