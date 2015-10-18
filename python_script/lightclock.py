@@ -127,13 +127,12 @@ class LEDThread(threading.Thread):
 				self.mode = 'none'
 			elif(self.mode == 'disp_update'):
 				for i in range(12):
-					for j in range(12):
-						self.strip.setPixelColor(j,0)
 					self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
 					self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
 					self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
 					self.strip.show()
 					time.sleep(self.dt)
+				self.strip.show()
 				self.mode = 'none'
 			time.sleep(0.1)
 		
