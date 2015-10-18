@@ -14,7 +14,7 @@ while (1):
 	if(strs == "GET?SSIDLIST"):
 		ssids = get_wifi_ssid()
 		serial_send_line("RSP?SSID")
-		serial_send_line(str(len(food)))
+		serial_send_line(str(len(ssids)))
 		for ssid in ssids:
 			serial_send_line(ssid)
 		
