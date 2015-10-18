@@ -100,9 +100,11 @@ class LEDThread(threading.Thread):
 			time.sleep(0.1)
 		
 	def fade_out(self, time):
+		print ('fade_out 1')
 		self.dt = time
 		self.mode = 'fade_out'
 	def fade_in(self, time):
+		print ('fdae_in 1')
 		self.dt = time
 		self.mode = 'fade_in'
 		
