@@ -2,7 +2,7 @@ from slm1606m import *
 from neopixel_user import *
 from neopixel import *
 from pc2serial import *
-
+from getjsondata import *
 
 import dot_data
 import threading, time
@@ -82,6 +82,10 @@ dot_th = DotThread(dot)
 dot_th.start()
 led_th = LEDThread()
 led_th.start()
+json_th = WTJsonThread()
+json_th.start()
+pc_th = PCComThread()
+pc_th.start()
 #dot_th.join()
 
 try:
@@ -91,7 +95,11 @@ try:
 except KeyboardInterrupt:
 	dot_th.stop()
 	led_th.stop()
+	json_th.stop()
+	pc_th.stop()
 	print("STOP")
 	dot_th.join()
 	led_th.join()
+	json_th.join()
+	pc_th.join()
 
