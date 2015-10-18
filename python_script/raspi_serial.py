@@ -19,4 +19,4 @@ if __name__ == '__main__':
 		print("start")
 		rcv = readLine()
 		print(rcv)	
-		port.write("Message : " + rcv + "\r\n")
+		port.write("Message : " + rcv + "\n")
