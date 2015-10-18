@@ -72,6 +72,7 @@ class WTJsonThread(threading.Thread):
 			self.wind[index] = sz['wind']
 			self.dust[index] = sz['dust']
 			self.temp[index] = sz['temp']
+			self.tempPast[index] = sz['tempPast24']
 			
 			if index>2 :
 				diff = self.temp[index] - self.temp[last_index]
@@ -89,6 +90,10 @@ class WTJsonThread(threading.Thread):
 				diff = self.wind[index] - self.wind[last_index]
 				self.wind[index-1] = self.wind[last_index] + (int)(diff * 0.33)
 				self.wind[index-2] = self.wind[last_index] + (int)(diff * 0.67)
+			if index>2 :
+				diff = self.tempPast[index] - self.tempPast[last_index]
+				self.tempPast[index-1] = self.tempPast[last_index] + (int)(diff * 0.33)
+				self.tempPast[index-2] = self.tempPast[last_index] + (int)(diff * 0.67)
 			
 			past_time = t
 			
