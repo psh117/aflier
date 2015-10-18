@@ -14,22 +14,6 @@ color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
 
 dot = dot_data.dot_17
-class DotThread(threading.Thread):
-	def __init__(self, dot):
-		threading.Thread.__init__(self)
-		self.__continue = True
-		self.dot = dot
-		self.green = 1
-		self.red = 1
-	def run(self):
-		while(self.__continue):
-			display_dot_1212(self.dot,5,self.green,self.red)
-			pass
-	def stop(self):
-		self.__continue = False
-
-	def changeDot(self, dot):
-		self.dot = dot
 	
 	
 dot_th = DotThread(dot)
