@@ -120,9 +120,9 @@ pc_th.start()
 #dot_th.join()
 time.sleep(1)
 led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
-led_th.fade_in(0.03)
+led_th.fade_in(0.02)
 time.sleep(6)
-led_th.fade_out(0.05)
+led_th.fade_out(0.02)
 try:
 	while(True):
 		time.sleep(0.1)
