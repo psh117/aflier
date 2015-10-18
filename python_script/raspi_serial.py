@@ -1,7 +1,7 @@
 import serial
 import time
 
-port = serial.Serial("/dev/ttyAMA0", baudrate=115200)
+port = serial.Serial("/dev/ttyAMA0", baudrate=115200, timeout=5)
 
 def serial_read_line():
 	line = ""
