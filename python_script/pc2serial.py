@@ -34,6 +34,9 @@ while (1):
 			scheme.save()
 		except:
 			pass
-		scheme.activate()
-		print("Complete")
+		try:
+			scheme.activate()
+			serial_send_line("RSP?COMP")
+		except:
+			serial_send_line("RSP?SSID")
     
