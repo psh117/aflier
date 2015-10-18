@@ -54,7 +54,7 @@ class LEDThread(threading.Thread):
 		self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
                 self.__continue = True
 		self.strip.begin()
-		self.colors = [Color(), Color()]
+		self.colors = [Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0)]
 		self.mode = 'show'
 	
 	def stop(self):
