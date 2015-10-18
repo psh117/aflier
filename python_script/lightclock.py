@@ -63,8 +63,8 @@ def psd_reader():
 		while pygame.mixer.music.get_busy() == True:
 			led_th.disp_update(0.03,1)
 			
-def psd_ready_sleep(time):	
-	for i in range(int(time*10)):
+def psd_ready_sleep(t):	
+	for i in range(int(t*10)):
 		psd_reader()
 		time.sleep(0.1)
 try:
