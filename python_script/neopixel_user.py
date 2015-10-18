@@ -187,6 +187,15 @@ class LEDThread(threading.Thread):
 				self.reset_pix_data()
 				self.strip.show()
 				self.mode = 'none'
+			elif(self.mode == 'disp_color'):
+				for j in range(256):
+					for i in range(strip.numPixels()):
+						self.strip.setPixelColor(i, wheel(((i * 256 / self.strip.numPixels()) + j) & 255))
+					self.strip.show()
+					time.sleep(self.dt)
+				self.reset_pix_data()
+				self.strip.show()
+				self.mode = 'none'
 			time.sleep(0.1)
 	
 	def reset_pix_data(self):
@@ -215,6 +224,10 @@ class LEDThread(threading.Thread):
 		self.dt = time
 		self.count = count
 		self.mode = 'disp_update'
+	def disp_color(self, time):
+		print ('disp_color 1')
+		self.dt = time
+		self.mode = 'disp_color'
 		
 	
 
