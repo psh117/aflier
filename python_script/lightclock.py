@@ -37,7 +37,7 @@ pygame.mixer.init()
 led_th.disp_update(0.03,3)
 
 # 60 sec after alarm
-time.sleep(60)
+time.sleep(3)
 pygame.mixer.music.load("/home/pi/aflier/wav/alram_meet_fall.wav")
 pygame.mixer.music.play()
 time.sleep(1)
