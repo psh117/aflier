@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
-import time
+import threading, time
+
 
 dot_umbr = [
 0,0,0,0,0,0,0,0,0,0,0,0,
