@@ -26,7 +26,14 @@ while (1):
 		ssid = int(serial_read_line())
 		pswd = serial_read_line()
 		scheme = Scheme.for_cell('wlan0','home',gCell[ssid],pswd)
-		scheme.save()
+		try:
+			scheme.delete()
+		except:
+			pass
+		try:
+			scheme.save()
+		except:
+			pass
 		scheme.activate()
 		print("Complete")
     
