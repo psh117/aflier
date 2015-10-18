@@ -194,6 +194,7 @@ time.sleep(6)
 try:
 	while(True):
 		# dust
+		dot_th.changeDot(dot_data.dot_sun)
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
 		led_th.fade_in(0.02)
@@ -201,6 +202,7 @@ try:
 		led_th.fade_out(0.02)
 		time.sleep(6)
 		# dust
+		dot_th.changeDot(dot_data.dot_umbrella)
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.wind[i]]
 		led_th.fade_in(0.02)
