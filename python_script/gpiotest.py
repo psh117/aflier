@@ -24,20 +24,20 @@ class GPIOThread(threading.Thread):
 		self.__continue = False
 
 	def run(self):
-	    while (self.__continue):
-            if(self.sw1 != GPIO.input(SW1)):
-                self.sw1 = GPIO.input(SW1)
-                print("SW1 =",self.sw1)
-                time.sleep(0.05)
-            
-            if(self.sw2 != GPIO.input(SW2)):
-                self.sw2 = GPIO.input(SW2)
-                print("SW2 =",self.sw2)
-                time.sleep(0.05)
-            
-            if(self.psd != GPIO.input(PSD)):
-                self.psd = GPIO.input(PSD)
-                print("PSD =",self.psd)
-                time.sleep(0.05)
+		while (self.__continue):
+			if(self.sw1 != GPIO.input(SW1)):
+				self.sw1 = GPIO.input(SW1)
+				print("SW1 =",self.sw1)
+				time.sleep(0.05)
+			
+			if(self.sw2 != GPIO.input(SW2)):
+				self.sw2 = GPIO.input(SW2)
+				print("SW2 =",self.sw2)
+				time.sleep(0.05)
+			
+			if(self.psd != GPIO.input(PSD)):
+				self.psd = GPIO.input(PSD)
+				print("PSD =",self.psd)
+				time.sleep(0.05)
+		
 
-	        
