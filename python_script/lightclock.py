@@ -56,6 +56,7 @@ class LEDThread(threading.Thread):
 		self.strip.begin()
 		self.colors = [Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0)]
 		self.mode = 'show'
+		self.dt
 	
 	def stop(self):
 		self.__continue = False
@@ -65,11 +66,40 @@ class LEDThread(threading.Thread):
 			for i in range(12):
 				self.strip.setPixelColor(i,self.colors[i])
 			self.strip.show()
-		if(self.mode == 'circle'):
-			pass
+		if(self.mode == 'fade_out'):
+			for ratio in range(100,-1,-1):
+				for i in range(12):
+					r = self.colors[i] >> 16
+					g = (self.colors[i]-(r<<16)) >> 8
+					b = (self.colors[i]-(r<<16)-(g<<8))
+					self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
+				
+				self.strip.show()
+				time.sleep(self.dt)
+				
+		if(self.mode == 'fade_in'):
+			for ratio in range(0,101):
+				for i in range(12):
+					r = self.colors[i] >> 16
+					g = (self.colors[i]-(r<<16)) >> 8
+					b = (self.colors[i]-(r<<16)-(g<<8))
+					self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
+				
+				self.strip.show()
+				time.sleep(self.dt)
+				
 				
 		time.sleep(0.1)
-			
+		
+	def fade_out(self, time):
+		self.mode = 'fade_out'
+		self.dt = time
+		self.start()
+	def fade_in(self, time):
+		self.mode = 'fade_in'
+		self.dt = time
+		self.start()
+		
 	
 dot_th = DotThread(dot)
 dot_th.start()
@@ -80,6 +110,9 @@ json_th.start()
 pc_th = PCComThread()
 pc_th.start()
 #dot_th.join()
+time.sleep(10)
+led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[5],color_rd[4],color_rd[3],color_rd[2],color_rd[0]]
+led_th.fade_in(0.03)
 
 try:
 	while(True):
