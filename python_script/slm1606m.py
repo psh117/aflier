@@ -99,6 +99,22 @@ def display_dot_1212(dot,duty,redOn,greenOn):
                 GPIO.output(BRT,0)
 
 
+class DotThread(threading.Thread):
+	def __init__(self, dot):
+		threading.Thread.__init__(self)
+		self.__continue = True
+		self.dot = dot
+		self.green = 1
+		self.red = 1
+	def run(self):
+		while(self.__continue):
+			display_dot_1212(self.dot,5,self.red,self.green)
+			pass
+	def stop(self):
+		self.__continue = False
+
+	def changeDot(self, dot):
+		self.dot = dot
 
 # Main program
 if __name__ == '__main__':
