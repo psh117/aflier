@@ -31,8 +31,6 @@ color_rd = [
 
 color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
-# led number = time_table[hour]
-time_table = [6,5,4,3,2,1,0,11,10,9,8,7,6,5,4,3,2,1,0,11,10,9,8,7]
 
 dot = dot_data.dot_17
 class DotThread(threading.Thread):
