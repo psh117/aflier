@@ -8,6 +8,8 @@ import time
 from neopixel import *
 import threading, time
 
+# led number = time_table[hour]
+time_table = [6,5,4,3,2,1,0,11,10,9,8,7,6,5,4,3,2,1,0,11,10,9,8,7]
 
 # LED strip configuration:
 LED_COUNT      = 12      # Number of LED pixels.
