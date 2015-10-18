@@ -28,7 +28,7 @@ class WTJsonThread(threading.Thread):
 				if (self.__continue == False):
 					break
 	
-	def UpdateJsonData(befo_time):
+	def UpdateJsonData(self, befo_time):
 		now = datetime.now()
 		nowHour = now.hour #nowHour = variable[0]
 		nowDay = now.day
