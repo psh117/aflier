@@ -15,6 +15,6 @@ def serial_read_line():
 if __name__ == '__main__':
 	while (1):
 		print("start")
-		rcv = readLine()
+		rcv = serial_read_line()
 		print(rcv)	
 		port.write("Message : " + rcv + "\r\n")

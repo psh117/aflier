@@ -26,7 +26,7 @@ color_uv_5 = Color(255,0,0)
 
 color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
-dot = dot_data.dot_snow
+dot = dot_data.dot_17
 class DotThread(threading.Thread):
 	def __init__(self, dot):
 		threading.Thread.__init__(self)
@@ -34,7 +34,7 @@ class DotThread(threading.Thread):
 		self.dot = dot
 	def run(self):
 		while(self.__continue):
-			display_dot_1212(self.dot,5,0,1)
+			display_dot_1212(self.dot,5,1,1)
 			pass
 	def stop(self):
 		self.__continue = False
