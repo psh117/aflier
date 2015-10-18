@@ -68,10 +68,10 @@ class WTJsonThread(threading.Thread):
 			last_index = past_time - init_time
 			#if index >= 12:
 			#	break
-			self.rain[index] = sz['self.rain']
-			self.wind[index] = sz['self.wind']
-			self.dust[index] = sz['self.dust']
-			self.temp[index] = sz['self.temp']
+			self.rain[index] = sz['rain']
+			self.wind[index] = sz['wind']
+			self.dust[index] = sz['dust']
+			self.temp[index] = sz['temp']
 			
 			if index>2 :
 				diff = self.temp[index] - self.temp[last_index]
