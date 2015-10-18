@@ -38,7 +38,7 @@ led_th.disp_update(0.03,3)
 
 # 60 sec after alarm
 time.sleep(60)
-pygame.mixer.music.load("/home/pi/wav/alram_meet_fall.wav")
+pygame.mixer.music.load("/home/pi/aflier/wav/alram_meet_fall.wav")
 pygame.mixer.music.play()
 time.sleep(1)
 
@@ -56,7 +56,7 @@ time.sleep(5)
 
 def psd_reader():
 	if (GPIO.input(PSD)):
-		pygame.mixer.music.load("/home/pi/wav/today_total.wav")
+		pygame.mixer.music.load("/home/pi/aflier/wav/today_total.wav")
 		pygame.mixer.music.play()
 		while pygame.mixer.music.get_busy() == True:
 			led_th.disp_update(0.03,1)
