@@ -1,6 +1,8 @@
 from slm1606m import *
 from neopixel_user import *
 from neopixel import *
+from pc2serial import *
+
 
 import dot_data
 import threading, time
@@ -52,6 +54,7 @@ class LEDThread(threading.Thread):
 		self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
                 self.__continue = True
 		self.strip.begin()
+		
 	
 	def stop(self):
 		self.__continue = False
