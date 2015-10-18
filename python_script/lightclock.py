@@ -101,35 +101,27 @@ class LEDThread(threading.Thread):
 			
 			elif(self.mode == 'disp_up'):
 				for i in range(self.count):
-					self.strip.setPixelColor(time_table[10],color_rd[0])
 					self.strip.setPixelColor(time_table[11],color_rd[1])
 					self.strip.setPixelColor(time_table[12],color_rd[2])
 					self.strip.setPixelColor(time_table[1],color_rd[1])
-					self.strip.setPixelColor(time_table[2],color_rd[0])
 					self.strip.show()
 					time.sleep(self.dt)
-					self.strip.setPixelColor(time_table[10],0)
 					self.strip.setPixelColor(time_table[11],0)
 					self.strip.setPixelColor(time_table[12],0)
 					self.strip.setPixelColor(time_table[1],0)
-					self.strip.setPixelColor(time_table[2],0)
 					self.strip.show()
 					time.sleep(self.dt)
 				self.mode = 'none'
 			elif(self.mode == 'disp_down'):
 				for i in range(self.count):
-					self.strip.setPixelColor(time_table[4],color_bl[0])
 					self.strip.setPixelColor(time_table[5],color_bl[1])
 					self.strip.setPixelColor(time_table[6],color_bl[2])
 					self.strip.setPixelColor(time_table[7],color_bl[1])
-					self.strip.setPixelColor(time_table[8],color_bl[0])
 					self.strip.show()
 					time.sleep(self.dt)
-					self.strip.setPixelColor(time_table[4],0)
 					self.strip.setPixelColor(time_table[5],0)
 					self.strip.setPixelColor(time_table[6],0)
 					self.strip.setPixelColor(time_table[7],0)
-					self.strip.setPixelColor(time_table[8],0)
 					self.strip.show()
 					time.sleep(self.dt)
 				self.mode = 'none'
