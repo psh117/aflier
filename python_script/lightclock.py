@@ -10,25 +10,6 @@ import threading, time
 
 color_blue = Color(0,160,182)
 
-
-#color_
-color_bl = [
-	Color(180,240,250), 
-	Color(110,200,200), 
-	Color(0,80,182), 
-	Color(10,40,220), 
-	Color(0,0,255)
-	]
-
-
-color_rd = [
-	Color(240,220,50),
-	Color(200,180,0),
-	Color(182,80,0),
-	Color(200,40,10),
-	Color(255,0,0)
-	]
-
 color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
 
