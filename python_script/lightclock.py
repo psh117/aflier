@@ -180,20 +180,33 @@ pc_th = PCComThread()
 pc_th.start()
 #dot_th.join()
 time.sleep(1)
-led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
+#led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
 
 led_th.disp_update(0.03,3)
 time.sleep(6)
-led_th.fade_in(0.02)
-time.sleep(6)
-led_th.fade_out(0.02)
-time.sleep(6)
-led_th.disp_up(0.4,3)
-time.sleep(6)
-led_th.disp_down(0.4,3)
+#led_th.fade_in(0.02)
+#time.sleep(6)
+#led_th.fade_out(0.02)
+#time.sleep(6)
+#led_th.disp_up(0.4,3)
+#time.sleep(6)
+#led_th.disp_down(0.4,3)
 try:
 	while(True):
-		time.sleep(0.1)
+		# dust
+		for i in range(12):
+			led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
+		led_th.fade_in(0.02)
+		time.sleep(6)
+		led_th.fade_out(0.02)
+		time.sleep(6)
+		# dust
+		for i in range(12):
+			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.wind[i]]
+		led_th.fade_in(0.02)
+		time.sleep(6)
+		led_th.fade_out(0.02)
+		time.sleep(6)
 
 except KeyboardInterrupt:
 	dot_th.stop()
