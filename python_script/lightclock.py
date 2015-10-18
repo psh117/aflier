@@ -3,6 +3,7 @@ from neopixel_user import *
 from neopixel import *
 from pc2serial import *
 from getjsondata import *
+from gpiotest import *
 
 import dot_data
 import threading, time
