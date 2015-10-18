@@ -12,11 +12,11 @@ def serial_read_line():
 		line += ch
 		
 def serial_send_line(strs):
-	port.write(strs + "\r\n")
+	port.write(strs + "\n")
 	
 if __name__ == '__main__':
 	while (1):
 		print("start")
 		rcv = serial_read_line()
 		print(rcv)	
-		port.write("Message : " + rcv + "\r\n")
+		port.write("Message : " + rcv + "\n")
