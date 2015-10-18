@@ -15,7 +15,7 @@ class WTJsonThread(threading.Thread):
 		self.temp = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 		self.tempPast24 = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 		self.now = datetime.now()
-		self.befo_time = now.hour - 1
+		self.befo_time = self.now.hour - 1
 	
 	def stop(self):
 		self.__continue = False
