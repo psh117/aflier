@@ -59,5 +59,5 @@ if __name__ == '__main__':
 	except KeyboardInterrupt: 
 		pc_th.stop()
 		print("STOP")
-		pc_th.joint()
+		pc_th.join()
 
