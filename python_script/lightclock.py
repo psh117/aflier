@@ -54,29 +54,22 @@ class LEDThread(threading.Thread):
 		self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
                 self.__continue = True
 		self.strip.begin()
-		
+		self.colors = Color(0,0,0)[12]
+		self.mode = 'show'
 	
 	def stop(self):
 		self.__continue = False
 
 	def run(self):
-		while(self.__continue):
-                        self.strip.setPixelColor(0,color_rd[0])
-                        self.strip.setPixelColor(1,color_rd[1])
-                        self.strip.setPixelColor(2,color_rd[1])
-                        self.strip.setPixelColor(3,color_rd[2])
-                        self.strip.setPixelColor(4,color_rd[3])
-                        self.strip.setPixelColor(5,color_rd[3])
-                        self.strip.setPixelColor(6,color_rd[4])
-                        self.strip.setPixelColor(7,color_rd[3])
-			self.strip.setPixelColor(8,color_rd[2])
-                        self.strip.setPixelColor(9,color_rd[1])
-                        self.strip.setPixelColor(10,color_rd[0])
-                        self.strip.setPixelColor(11,color_rd[0])
-
-			#self.strip.setPixelColor(11,Color(0,160,182))
+		if(self.mode == 'show'):
+			for i in range(12):
+				self.strip.setPixelColor(i,colors[i])
 			self.strip.show()
-			time.sleep(1)
+		if(self.mode == 'circle'):
+			pass
+				
+		time.sleep(0.1)
+			
 	
 dot_th = DotThread(dot)
 dot_th.start()
