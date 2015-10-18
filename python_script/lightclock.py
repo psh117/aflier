@@ -126,12 +126,13 @@ class LEDThread(threading.Thread):
 					time.sleep(self.dt)
 				self.mode = 'none'
 			elif(self.mode == 'disp_update'):
-				for i in range(12):
-					self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
-					self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
-					self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
-					self.strip.show()
-					time.sleep(self.dt)
+				for k in range(self.count):
+					for i in range(12):
+						self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
+						self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
+						self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
+						self.strip.show()
+						time.sleep(self.dt)
 				self.strip.show()
 				self.mode = 'none'
 			time.sleep(0.1)
@@ -154,9 +155,10 @@ class LEDThread(threading.Thread):
 		self.dt = time
 		self.count = count
 		self.mode = 'disp_down'
-	def disp_update(self, time):
+	def disp_update(self, time, count):
 		print ('disp_update 1')
 		self.dt = time
+		self.count = count
 		self.mode = 'disp_update'
 		
 		
@@ -173,7 +175,7 @@ pc_th.start()
 time.sleep(1)
 led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],color_rd[3],color_rd[4],color_rd[4],color_rd[3],color_rd[2],color_rd[1],color_rd[0]]
 
-led_th.disp_update(0.03)
+led_th.disp_update(0.05,3)
 time.sleep(6)
 led_th.fade_in(0.02)
 time.sleep(6)
