@@ -125,6 +125,15 @@ class LEDThread(threading.Thread):
 					self.strip.show()
 					time.sleep(self.dt)
 				self.mode = 'none'
+			elif(self.mode == 'disp_update'):
+				for i in range(12):
+					for j in range(12):
+						self.strip.setPixelColor(j,0)
+					self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
+					self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
+					self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
+					time.sleep(self.dt)
+				self.mode = 'none'
 			time.sleep(0.1)
 		
 	def fade_out(self, time):
@@ -145,6 +154,11 @@ class LEDThread(threading.Thread):
 		self.dt = time
 		self.count = count
 		self.mode = 'disp_down'
+	def disp_update(self, time):
+		print ('disp_update 1')
+		self.dt = time
+		self.mode = 'disp_update'
+		
 		
 	
 dot_th = DotThread(dot)
