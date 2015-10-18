@@ -31,6 +31,8 @@ color_rd = [
 
 color_red = Color(241,15,10)
 color_yellow = Color(182,160,0)
+# led number = time_table[hour]
+time_table = [6,5,4,3,2,1,0,11,10,9,8,7,6,5,4,3,2,1,0,11,10,9,8,7]
 
 dot = dot_data.dot_17
 class DotThread(threading.Thread):
@@ -57,6 +59,7 @@ class LEDThread(threading.Thread):
 		self.colors = [Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0), Color(0,0,0)]
 		self.mode = 'show'
 		self.dt = 0
+		self.count = 0
 	
 	def stop(self):
 		self.__continue = False
@@ -95,7 +98,23 @@ class LEDThread(threading.Thread):
 					time.sleep(self.dt)
 				self.mode = 'none'
 				print ('fdae_in')
-					
+			
+			elif(self.mode == 'disp_up'):
+				for i in range(self.count):
+					self.strip.setPixelColor(time_table[10],color_rd[1])
+					self.strip.setPixelColor(time_table[11],color_rd[2])
+					self.strip.setPixelColor(time_table[12],color_rd[3])
+					self.strip.setPixelColor(time_table[1],color_rd[2])
+					self.strip.setPixelColor(time_table[2],color_rd[1])
+					self.strip.show()
+					time.sleep(self.dt)
+					self.strip.setPixelColor(time_table[10],0)
+					self.strip.setPixelColor(time_table[11],0)
+					self.strip.setPixelColor(time_table[12],0)
+					self.strip.setPixelColor(time_table[1],0)
+					self.strip.setPixelColor(time_table[2],0)
+					self.strip.show()
+					time.sleep(self.dt)
 					
 			time.sleep(0.1)
 		
@@ -107,6 +126,16 @@ class LEDThread(threading.Thread):
 		print ('fdae_in 1')
 		self.dt = time
 		self.mode = 'fade_in'
+	def disp_up(self, time, count):
+		print ('disp_up 1')
+		self.dt = time
+		self.count = count
+		self.mode = 'disp_up'
+	def disp_down(self, time, count):
+		print ('disp_down 1')
+		self.dt = time
+		self.count = count
+		self.mode = 'disp_down'
 		
 	
 dot_th = DotThread(dot)
@@ -123,6 +152,9 @@ led_th.colors = [color_rd[0],color_rd[0],color_rd[0],color_rd[1],color_rd[2],col
 led_th.fade_in(0.02)
 time.sleep(6)
 led_th.fade_out(0.02)
+time.sleep(6)
+led_th.disp_up(0.4,3)
+time.sleep(6)
 try:
 	while(True):
 		time.sleep(0.1)
