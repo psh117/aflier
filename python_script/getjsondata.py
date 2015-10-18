@@ -14,6 +14,7 @@ class WTJsonThread(threading.Thread):
 		self.dust = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		self.temp = [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20]
 		self.tempPast24 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		self.alhour = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 		self.now = datetime.now()
 		self.befo_time = self.now.hour - 1
 	
@@ -105,7 +106,8 @@ class WTJsonThread(threading.Thread):
 			
 			
 		for i in range(12):
-			print((nowHour+i)%24,self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast24[i])
+			self.alhour[i] = (nowHour+1)%24
+			print(self.alhour[i],self.rain[i], self.wind[i], self.dust[i], self.temp[i], self.tempPast24[i])
 		print("Now Hour =", nowHour, "Updated")
 		return nowHour
 
