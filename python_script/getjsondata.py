@@ -67,7 +67,11 @@ class WTJsonThread(threading.Thread):
 			
 			index = t - init_time
 			last_index = past_time - init_time
-			print(t, index, last_index)
+			if(index < 0):
+				index += 24
+			if(last_index <0):
+				last_index += 24
+			#print(t, index, last_index)
 			#if index >= 12:
 			#	break
 			self.rain[index] = sz['rain']
