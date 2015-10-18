@@ -49,6 +49,7 @@ while (GPIO.input(PSD) == 0):
 
 # Compare Past Temp (Colder then past)
 
+pygame.mixer.music.stop()
 time.sleep(5)
 
 led_th.disp_down(0.4,3)
