@@ -6,6 +6,7 @@
 import time
 
 from neopixel import *
+import threading, time
 
 
 # LED strip configuration:
