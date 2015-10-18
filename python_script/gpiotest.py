@@ -23,7 +23,7 @@ while (1):
     time.sleep(0.05)
     
   if(sw2_ls != GPIO.input(SW2)):
-    sw1_ls = GPIO.input(SW2)
+    sw2_ls = GPIO.input(SW2)
     print("SW2 =",sw2_ls)
     time.sleep(0.05)
     
