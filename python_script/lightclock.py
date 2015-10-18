@@ -100,6 +100,7 @@ class LEDThread(threading.Thread):
 				print ('fdae_in')
 			
 			elif(self.mode == 'disp_up'):
+				self.reset_pix_data()
 				for i in range(self.count):
 					self.strip.setPixelColor(time_table[11],color_rd[1])
 					self.strip.setPixelColor(time_table[12],color_rd[2])
@@ -113,6 +114,7 @@ class LEDThread(threading.Thread):
 					time.sleep(self.dt)
 				self.mode = 'none'
 			elif(self.mode == 'disp_down'):
+				self.reset_pix_data()
 				for i in range(self.count):
 					self.strip.setPixelColor(time_table[5],color_bl[1])
 					self.strip.setPixelColor(time_table[6],color_bl[2])
@@ -128,15 +130,20 @@ class LEDThread(threading.Thread):
 			elif(self.mode == 'disp_update'):
 				for k in range(self.count):
 					for i in range(12):
+						reset_pix_data();
 						self.strip.setPixelColor(time_table[(i+11)%12],color_rd[0])
 						self.strip.setPixelColor(time_table[(i+12)%12],color_rd[1])
 						self.strip.setPixelColor(time_table[(i+13)%12],color_rd[0])
 						self.strip.show()
 						time.sleep(self.dt)
+				reset_pix_data()
 				self.strip.show()
 				self.mode = 'none'
 			time.sleep(0.1)
-		
+	
+	def reset_pix_data(self):
+		for i in range(12):
+			self.strip.setPixelColor(i,0)
 	def fade_out(self, time):
 		print ('fade_out 1')
 		self.dt = time
