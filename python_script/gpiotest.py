@@ -18,7 +18,7 @@ class GPIOThread(threading.Thread):
 		self.psd = 0
 		self.sw1 = 0
 		self.sw2 = 0
-        self.__continue = True
+        	self.__continue = True
 		
 	def stop(self):
 		self.__continue = False
