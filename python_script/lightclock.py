@@ -68,7 +68,8 @@ class LEDThread(threading.Thread):
 					self.strip.setPixelColor(i,self.colors[i])
 				self.strip.show()
 				self.mode = 'none'
-			if(self.mode == 'fade_out'):
+			elif(self.mode == 'fade_out'):
+				print ('fdae_out st')
 				for ratio in range(100,-1,-1):
 					for i in range(12):
 						r = self.colors[i] >> 16
@@ -82,7 +83,7 @@ class LEDThread(threading.Thread):
 				print ('fdae_out')
 				self.mode = 'none'
 					
-			if(self.mode == 'fade_in'):
+			elif(self.mode == 'fade_in'):
 				for ratio in range(0,101):
 					for i in range(12):
 						r = self.colors[i] >> 16
