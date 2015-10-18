@@ -86,7 +86,7 @@ class LEDThread(threading.Thread):
 						r = self.colors[i] >> 16
 						g = (self.colors[i]-(r<<16)) >> 8
 						b = (self.colors[i]-(r<<16)-(g<<8))
-						self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
+						self.strip.setPixelColor(i,Color(int(r*ratio * 0.01),int(g*ratio * 0.01),int(b*ratio * 0.01)))
 					
 					self.strip.show()
 					time.sleep(self.dt)
