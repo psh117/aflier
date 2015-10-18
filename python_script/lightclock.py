@@ -62,34 +62,38 @@ class LEDThread(threading.Thread):
 		self.__continue = False
 
 	def run(self):
-		if(self.mode == 'show'):
-			for i in range(12):
-				self.strip.setPixelColor(i,self.colors[i])
-			self.strip.show()
-		if(self.mode == 'fade_out'):
-			for ratio in range(100,-1,-1):
+		while(self.__continue):
+			if(self.mode == 'show'):
 				for i in range(12):
-					r = self.colors[i] >> 16
-					g = (self.colors[i]-(r<<16)) >> 8
-					b = (self.colors[i]-(r<<16)-(g<<8))
-					self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
-				
+					self.strip.setPixelColor(i,self.colors[i])
 				self.strip.show()
-				time.sleep(self.dt)
-				
-		if(self.mode == 'fade_in'):
-			for ratio in range(0,101):
-				for i in range(12):
-					r = self.colors[i] >> 16
-					g = (self.colors[i]-(r<<16)) >> 8
-					b = (self.colors[i]-(r<<16)-(g<<8))
-					self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
-				
-				self.strip.show()
-				time.sleep(self.dt)
-				
-				
-		time.sleep(0.1)
+				self.mode = 'none'
+			if(self.mode == 'fade_out'):
+				for ratio in range(100,-1,-1):
+					for i in range(12):
+						r = self.colors[i] >> 16
+						g = (self.colors[i]-(r<<16)) >> 8
+						b = (self.colors[i]-(r<<16)-(g<<8))
+						self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
+					
+					self.strip.show()
+					time.sleep(self.dt)
+				self.mode = 'none'
+					
+			if(self.mode == 'fade_in'):
+				for ratio in range(0,101):
+					for i in range(12):
+						r = self.colors[i] >> 16
+						g = (self.colors[i]-(r<<16)) >> 8
+						b = (self.colors[i]-(r<<16)-(g<<8))
+						self.strip.setPixelColor(i,Color(r*ratio * 0.01,g*ratio * 0.01,b*ratio * 0.01))
+					
+					self.strip.show()
+					time.sleep(self.dt)
+				self.mode = 'none'
+					
+					
+			time.sleep(0.1)
 		
 	def fade_out(self, time):
 		self.mode = 'fade_out'
