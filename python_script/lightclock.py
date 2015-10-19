@@ -59,7 +59,7 @@ led_th.disp_up(0.7,3)
 time.sleep(7)
 dot_th.changeDot(dot_data.dot_12)
 led_th.disp_down(0.7,3)
-time.sleep(4)
+time.sleep(30)
 
 def psd_reader():
 	if (GPIO.input(PSD)):
