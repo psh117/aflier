@@ -46,6 +46,7 @@ time.sleep(1)
 # PSD detect
 while (GPIO.input(PSD) == 0):
 	led_th.disp_color(0.005)
+	time.sleep(0.5)
 
 # Compare Past Temp (Colder then past)
 
@@ -62,6 +63,7 @@ def psd_reader():
 		pygame.mixer.music.play()
 		while pygame.mixer.music.get_busy() == True:
 			led_th.disp_update(0.03,1)
+			time.sleep(0.1)
 			
 def psd_ready_sleep(t):	
 	for i in range(int(t*10)):
