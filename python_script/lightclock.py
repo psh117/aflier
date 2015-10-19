@@ -101,7 +101,7 @@ try:
 		dot_th.red = 0
 		dot_th.changeDot(dot_data.dot_snow)
 		for i in range(12):
-			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.snow[i]]
+			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[0]
 		led_th.fade_in(0.02)
 		psd_ready_sleep(5)
 		led_th.fade_out(0.02)
