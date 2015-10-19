@@ -24,7 +24,7 @@ class WTJsonThread(threading.Thread):
 	def run(self):
 		while(self.__continue):
 			self.befo_time = self.UpdateJsonData(self.befo_time)
-			for i in range (600):
+			for i in range (5):
 				time.sleep(1)
 				if (self.__continue == False):
 					break
