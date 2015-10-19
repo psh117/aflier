@@ -189,7 +189,7 @@ class LEDThread(threading.Thread):
 				self.mode = 'none'
 			elif(self.mode == 'disp_color'):
 				for j in range(256):
-					for i in range(strip.numPixels()):
+					for i in range(self.strip.numPixels()):
 						self.strip.setPixelColor(i, wheel(((i * 256 / self.strip.numPixels()) + j) & 255))
 					self.strip.show()
 					time.sleep(self.dt)
