@@ -92,16 +92,24 @@ try:
 		dot_th.red = 0
 		dot_th.changeDot(dot_data.dot_umbrella)
 		for i in range(12):
-			rain_level = 0
-			if(json_th.rain[i] > 0.9):
-				rain_level = 4
-			elif(json_th.rain[i] > 0.7):
-				rain_level = 3
-			elif(json_th.rain[i] > 0.5):
-				rain_level = 2
-			elif(json_th.rain[i] > 0.2):
-				rain_level = 1
-			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[rain_level]
+			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[0]
+		led_th.colors[time_table[6] = color_bl[1]
+		led_th.colors[time_table[7] = color_bl[2]
+		led_th.colors[time_table[8] = color_bl[3]
+		led_th.colors[time_table[9] = color_bl[4]
+		led_th.colors[time_table[10] = color_bl[4]
+		led_th.colors[time_table[11] = color_bl[3]
+		#for i in range(12):
+		#	rain_level = 0
+		#	if(json_th.rain[i] > 0.9):
+		#		rain_level = 4
+		#	elif(json_th.rain[i] > 0.7):
+		#		rain_level = 3
+		#	elif(json_th.rain[i] > 0.5):
+		#		rain_level = 2
+		#	elif(json_th.rain[i] > 0.2):
+		#		rain_level = 1
+		#	led_th.colors[time_table[json_th.alhour[i]]] = color_bl[rain_level]
 		led_th.fade_in(0.02)
 		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
@@ -112,6 +120,12 @@ try:
 		dot_th.changeDot(dot_data.dot_snow)
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[0]
+		led_th.colors[time_table[6] = color_bl[4]
+		led_th.colors[time_table[7] = color_bl[3]
+		led_th.colors[time_table[8] = color_bl[2]
+		led_th.colors[time_table[9] = color_bl[1]
+		led_th.colors[time_table[10] = color_bl[0]
+		led_th.colors[time_table[11] = color_bl[1]
 		led_th.fade_in(0.02)
 		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
@@ -121,7 +135,13 @@ try:
 		dot_th.red = 0
 		dot_th.changeDot(dot_data.dot_wind) # TODO replace dot_umbrella to dot_wind
 		for i in range(12):
-			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.wind[i]]
+			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[0]
+		led_th.colors[time_table[2] = color_bl[0]
+		led_th.colors[time_table[3] = color_bl[1]
+		led_th.colors[time_table[4] = color_bl[2]
+		led_th.colors[time_table[5] = color_bl[3]
+		led_th.colors[time_table[6] = color_bl[4]
+		led_th.colors[time_table[7] = color_bl[3]
 		led_th.fade_in(0.02)
 		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
