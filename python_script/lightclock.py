@@ -46,7 +46,7 @@ time.sleep(1)
 # PSD detect
 while (GPIO.input(PSD) == 0):
 	led_th.disp_color(0.005)
-	time.sleep(0.5)
+	time.sleep(0.01)
 
 # Compare Past Temp (Colder then past)
 
