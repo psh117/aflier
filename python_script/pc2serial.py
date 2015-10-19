@@ -35,6 +35,7 @@ class PCComThread(threading.Thread):
 				print("SET SSID")
 				ssid = int(serial_read_line())
 				pswd = serial_read_line()
+				print(ssid, self.__cell[ssid])
 				scheme = Scheme.for_cell('wlan0','home',self.__cell[ssid],pswd)
 				try:
 					scheme.delete()
