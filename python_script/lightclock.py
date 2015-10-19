@@ -56,22 +56,10 @@ time.sleep(5)
 dot_th.red = 1
 dot_th.changeDot(dot_data.dot_25)
 led_th.disp_up(0.7,3)
-time.sleep(7)
+time.sleep(6)
 dot_th.changeDot(dot_data.dot_12)
 led_th.disp_down(0.7,3)
-time.sleep(7)
-
-# dust
-dot_th.red = 1
-dot_th.changeDot(dot_data.dot_pm)
-for i in range(12):
-	led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
-led_th.fade_in(0.02)
-psd_ready_sleep(15)
-led_th.fade_out(0.02)
-psd_ready_sleep(5)
-
-time.sleep(30)
+time.sleep(6)
 
 def psd_reader():
 	if (GPIO.input(PSD)):
@@ -85,6 +73,19 @@ def psd_ready_sleep(t):
 	for i in range(int(t*10)):
 		psd_reader()
 		time.sleep(0.1)
+		
+# dust
+dot_th.red = 1
+dot_th.changeDot(dot_data.dot_pm)
+for i in range(12):
+	led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
+led_th.fade_in(0.02)
+psd_ready_sleep(15)
+led_th.fade_out(0.02)
+psd_ready_sleep(5)
+
+time.sleep(30)
+
 try:
 	while(True):
 		# rain
