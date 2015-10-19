@@ -164,9 +164,9 @@ class LEDThread(threading.Thread):
 			elif(self.mode == 'disp_down'):
 				self.reset_pix_data()
 				for i in range(self.count):
-					self.strip.setPixelColor(time_table[5],color_bl[1])
-					self.strip.setPixelColor(time_table[6],color_bl[2])
-					self.strip.setPixelColor(time_table[7],color_bl[1])
+					self.strip.setPixelColor(time_table[5],color_rd[1])
+					self.strip.setPixelColor(time_table[6],color_rd[2])
+					self.strip.setPixelColor(time_table[7],color_rd[1])
 					self.strip.show()
 					time.sleep(self.dt)
 					self.strip.setPixelColor(time_table[5],0)
