@@ -53,9 +53,13 @@ while (GPIO.input(PSD) == 0):
 pygame.mixer.music.stop()
 time.sleep(5)
 
-led_th.disp_down(0.4,3)
-
-time.sleep(5)
+dot_th.red = 1
+dot_th.changeDot(dot_data.dot_25)
+led_th.disp_up(0.7,3)
+time.sleep(4)
+dot_th.changeDot(dot_data.dot_12)
+led_th.disp_down(0.7,3)
+time.sleep(4)
 
 def psd_reader():
 	if (GPIO.input(PSD)):
@@ -77,7 +81,7 @@ try:
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_rd[json_th.dust[i]]
 		led_th.fade_in(0.02)
-		psd_ready_sleep(5)
+		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
 		psd_ready_sleep(5)
 		# rain
@@ -95,7 +99,7 @@ try:
 				rain_level = 1
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[rain_level]
 		led_th.fade_in(0.02)
-		psd_ready_sleep(5)
+		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
 		psd_ready_sleep(5)
 		
@@ -105,17 +109,17 @@ try:
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[0]
 		led_th.fade_in(0.02)
-		psd_ready_sleep(5)
+		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
 		psd_ready_sleep(5)
 		
 		# wind
 		dot_th.red = 0
-		dot_th.changeDot(dot_data.dot_umbrella) # TODO replace dot_umbrella to dot_wind
+		dot_th.changeDot(dot_data.dot_wind) # TODO replace dot_umbrella to dot_wind
 		for i in range(12):
 			led_th.colors[time_table[json_th.alhour[i]]] = color_bl[json_th.wind[i]]
 		led_th.fade_in(0.02)
-		psd_ready_sleep(5)
+		psd_ready_sleep(15)
 		led_th.fade_out(0.02)
 		psd_ready_sleep(5)
 
